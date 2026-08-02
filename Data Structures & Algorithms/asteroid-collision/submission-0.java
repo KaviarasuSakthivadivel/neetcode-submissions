@@ -1,0 +1,27 @@
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+
+        for(int a : asteroids) {
+            // both are moving in opposite direction
+            while(!stack.isEmpty() && a < 0 && stack.peek() > 0) {
+                int diff = a + stack.peek();
+
+                if(diff < 0) {
+                    stack.pop();
+                } else if(diff > 0) {
+                    a = 0;
+                } else {
+                    a = 0;
+                    stack.pop();
+                }
+            }
+
+            if(a != 0) {
+                stack.push(a);
+            }
+        }
+
+        return stack.stream().mapToInt(i -> i).toArray();
+    }
+}
